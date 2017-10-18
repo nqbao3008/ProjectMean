@@ -6,12 +6,14 @@ const express = require('express'),
   logger = require('morgan'),
   UserModel = require('./api/models/User'),
   Order = require('./api/models/Orders'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  jwt = require('jsonwebtoken'),
+  config = require('./config/main');
 
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/db'); 
+mongoose.connect(config.database); 
 
 
 // Middelware

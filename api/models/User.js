@@ -6,32 +6,45 @@ var nameCheck = (name) => {
 }
 
 var UserSchema = new Schema({
-    name: { 
-    	type: String, 
-    	//validate: nameCheck 
+    name: {
+        type: String,
+        //validate: nameCheck 
     },
-    mail: { 
-    	type: String 
+    email: {
+        type: String,
+        lowercase: true,
+        unique: true,
+        required: true
     },
-    phone: { 
-    	type: Number 
+    phone: {
+        type: Number
     },
-    status: { 
-    	type: String 
+    status: {
+        type: String
     },
-    address: { 
-    	type: String 
+    address: {
+        type: String
     },
-    role: { 
-    	type: String 
+    role: {
+        type: String,
+        enum: ['Client', 'Manager', 'Admin'],
+        default: 'Client'
     },
-    accID: { 
-    	type: Schema.Types.ObjectId, 
-    	ref: 'Account' 
+    accID: {
+        type: Schema.Types.ObjectId,
+        ref: 'Account'
+    },
+    userName: {
+        type: String,
+        minlength: 10,
+        maxlengh: 20
+    },
+    password: {
+        type: String
     },
     OrderID: [{
-    	type: Schema.Types.ObjectId, 
-    	ref: 'Order'
+        type: Schema.Types.ObjectId,
+        ref: 'Order'
     }]
 });
 
