@@ -80,7 +80,7 @@ module.exports = {
         res.status(200).json(result);
     },
 
-    get_UserOders: async(req, res, next)=>{
+    get_UserOders: async(req, res, next) => {
     	const {userId} =req.params;
     	const user = await User.findById(userId).populate('OrderID');
     	console.log('user',userId);
@@ -89,19 +89,25 @@ module.exports = {
 
     create_UserOders: async(req, res, next) => {
     	const { userId } = req.params;
-    	//Create new Order
+    	
+        //Create new Order
     	const newOrder= new Order(req.body);
-    	//Get User
+    	
+        //Get User
     	const user = await User.findById(userId);
-    	//Assign user as a Oder's UserID
+    	
+        //Assign user as a Oder's UserID
     	newOrder.UserID = user;
     	console.log('user',user);
     	console.log(newOrder);
-    	//Save the Order
+    	
+        //Save the Order
     	await newOrder.save();
-    	//Add orderID to User
+    	
+        //Add orderID to User
     	user.OrderID.push(newOrder);
-    	//Save the user
+    	
+        //Save the user
     	await user.save();
     	res.status(201).json(newOrder);
 
