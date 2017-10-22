@@ -1,0 +1,19 @@
+<html>
+<header>
+    <title>Register User</title>
+</header>
+
+<body>
+    <form action="/register" method="POST">
+        <p>Email: <input type="text" name="email" /></p>
+        <p>Name: <input type="text" name="name" /></p>
+        <p>Passwd:<input type="password" name="passwd" /></p>
+        <input type="submit" name="register" />
+    </form>
+    <p style="color: red;">
+        <% if (typeof errMes !== 'undefined') {%>
+        <%= errMes%>
+        <% }%>
+    </p>
+</body>
+</html>

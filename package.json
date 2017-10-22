@@ -25,13 +25,17 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.1",
+    "connect-livereload": "^0.6.0",
+    "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-promise-router": "^2.0.0",
+    "express-session": "^1.15.6",
     "joi": "^11.3.4",
     "jsonwebtoken": "^8.1.0",
     "mongoose": "^4.11.11",
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
-    "passport-jwt": "^3.0.0"
+    "passport-jwt": "^3.0.0",
+    "session-file-store": "^1.1.2"
   }
 }

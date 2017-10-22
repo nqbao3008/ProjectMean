@@ -1,0 +1,18 @@
+<html>
+    <header>
+        <title>User Login</title>
+    </header>
+    
+    <body>
+        <form action="/login" method="POST">
+            <p>Name: <input type="text" name="name" /></p>
+            <p>Passwd:<input type="password" name="passwd" /></p>
+            <input type="submit" name="Login" />
+        </form>
+        <p style="color: red;">
+            <% if (typeof errMes !== 'undefined') {%>
+            <%= errMes%>
+            <% }%>
+        </p>
+    </body>
+    </html>

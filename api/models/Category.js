@@ -8,11 +8,14 @@ var CategorySchema = new Schema({
     },
     Position: {
         type: String
-    }
+    },
     Status: {
         type: String
-    }
-
+    },
+    productID: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+    }]
 });
 
 

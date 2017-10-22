@@ -29,7 +29,7 @@ var UserSchema = new Schema({
     role: {
         type: String,
         enum: ['User', 'Admin'],
-        default: 'Client'
+        default: 'User'
     },
     userName: {
         type: String,
