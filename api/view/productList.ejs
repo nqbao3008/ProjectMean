@@ -1,0 +1,95 @@
+<html>
+    <header>
+        <title>Product List</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/bootstrap-grid.css" rel="stylesheet">
+        <link href="/css/bootstrap-grid.css.map" rel="stylesheet">
+        <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-grid.min.css.map" rel="stylesheet">
+        <script scr="/js/bootstrap.js"></script>
+        <script scr="/js/bootstrap.min.js"></script>
+    </header>
+    <body>
+        <div class='container' style="padding-top: 100px;">
+            <form action="/product/list" class="form-inline" method="GET">
+                <div class="form-group">
+                    <label>Search for:</label>
+                </div>
+                <div class="form-group mx-sm-3">
+                    <input type="string" class="form-control" placeholder="search text">
+                </div>
+                <button type="submit" class="btn btn-primary">Confirm identity</button>
+            </form>
+            <form action="/product/list" method="POST" id="my-form" class="form">
+                <table class="table table-bordered table-hover table-responsive form-group">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Add to Cart</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i = 0; i < products.length; i++) { %>
+                                <% var product = products[i]; %>
+                                    <tr class="form-group">
+                                        <td><input type="checkbox" class="my-checkbox"  id=<%= product._id %> > </td>
+                                        <td>
+                                            <%= product.name%>
+                                        </td>
+                                        <td>
+                                            <%= typeof product.description === 'undefined' ? "none" :  product.description%>
+                                        </td>
+                                        <td>
+                                            <%= product.price%>
+                                        </td>
+                                    </tr>
+                            <% } %>
+                        </tbody>
+                        <tfoot>
+        
+                        </tfoot>
+                    </table>
+                <div class="form-group row">
+                        <input type="hidden" name="products" id="myList" >
+                        <a class="btn btn-link col-sm-4" href="/product">Add more product</a>
+                        <a class="btn btn-link col-sm-4" href="/cart">Show cart</a>
+                        <input type="submit" value="Add to cart" class="col-sm-4 btn btn-primary"></input>
+                </div>
+            </form>
+        </div>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            var form = document.getElementById('my-form');
+            if (form.attachEvent) {
+                form.attachEvent("submit", processForm);
+            } else {
+                form.addEventListener("submit", processForm);
+            }
+            function processForm(e) {         
+                /* do what you want with the form */
+                var input = document.getElementById('myList');
+                input.value = checkboxClick();
+                // You must return false to prevent the default form behavior
+                return true;
+            }
+            function checkboxClick() {
+                    let listProduct = []
+                    let check = document.getElementsByClassName('my-checkbox');
+                    // check.checked = ! check.checked ;
+                    for (let i = 0; i < check.length; i++) {
+                        if (check[i].checked) {
+                            listProduct.push(check[i].id);
+                    }
+                }
+                return listProduct
+            }
+           
+        </script>
+    </body>
+</html>

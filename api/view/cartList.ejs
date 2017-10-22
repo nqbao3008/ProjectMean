@@ -1,0 +1,80 @@
+<html>
+    <header>
+        <title>Cart List</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+        
+    </header>
+    <body>
+        <div class="container "  style="padding-top: 100px;">
+        <!-- <form action="/product/list" method= "POST" id="my-form" class="form"> -->
+            <table class="table table-bordered table-hover table-responsive form-group">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quality</th>
+                        <th>Total Price</th>
+                        <th ></th>
+                        <th ></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < carts.length; i++) { %>
+                        <% var product = carts[i].product; %>
+                        <% var item = carts[i]; %>
+                        <tr class="form-group">
+                            <td ><%= product.name %></td>
+                            <td ><%= typeof product.description === 'undefined' ? "none" :  product.description %></td>
+                            <td ><%= product.price %></td>
+                            <td ><%= item.quantity %></td>
+                            <td ><%= item.price %></td>
+                            <td><button class="my-btn btn btn-danger" onclick="Delete(this)" id=<%= product._id%> </button> Delete </td>
+                            <td><a class="my-btn btn btn-secondary" href="/cart/<%= product._id%>" </a> View more </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="form-group row">
+                    <input type="hidden" name="products" id="myList" >
+                    <a class="btn btn-link col-sm-4" href="/product/list">Add more product</a>
+                    <a class="btn col-sm-4 " href="/cart"><span class="glyphicon glyphicon-envelope">Refresh</span></a>
+            </div>
+        <!-- </form> -->
+    </div>
+        <script>
+           function Delete (btn) {         
+            let $html = document.getElementsByTagName('html')[0];
+            let href = `/cart/${btn.id}`;
+            console.log(href);
+
+            //new
+            var xhr = new XMLHttpRequest();
+            // callback
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    $html.innerHTML = xhr.responseText;
+                    console.log("loaded");
+                }
+            }
+            // open
+            xhr.open('Delete', href);
+            //send
+            xhr.send();
+        }
+        </script>
+    </body>
+</html>

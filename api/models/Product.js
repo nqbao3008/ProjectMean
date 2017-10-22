@@ -7,19 +7,16 @@ var ProductSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category'
     },
-    Name: {
+    name: {
         type: String
     },
-    Price: {
+    price: {
         type: Number
-    }
-    Info: {
+    },
+    description: {
         type: String
-    }
-    Detail: {
-        type: String
-    }
-    Status: {
+    },
+    status: {
         type: String
     }
 
