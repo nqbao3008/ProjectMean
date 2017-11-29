@@ -34,6 +34,15 @@ module.exports.createAProduct = (req, res) => {
     });
 };
 
+module.exports.addProduct = (req, res) => {
+    const newProduct = new Product(req.body);
+        newProduct.save(function(err, product) {
+            if (err)
+                res.send(err);
+            res.json(200, { Product: product });
+        });
+}
+
 module.exports.searchProduct = (req, res) => {
     ProductModel.find({ name: req.params.search }, function (err, products) {
         if (err)
