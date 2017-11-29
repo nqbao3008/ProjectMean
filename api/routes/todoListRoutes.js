@@ -10,7 +10,7 @@ const productController = require('../controllers/ProductController');
 const userController = require('../controllers/UserController');
 const cartController = require('../controllers/CartController'),
     ejs = require('ejs');
-
+const AprioriController = require('../controllers/AprioriController');
 const config = require('../../config/main');
 const jwt = require('jsonwebtoken');
 
@@ -31,6 +31,9 @@ apiRoutes.route('/product')
     })
     .post(productController.createAProduct);
 
+apiRoutes.route('/product')
+    .post(productController.addProduct)
+
 apiRoutes.route('/product/list')
     .get(productController.readAllProduct)
     .post(productController.addProductsToCart);
@@ -38,6 +41,15 @@ apiRoutes.route('/product/list')
 apiRoutes.route('/cart')
     .get(cartController.readAllCart);
 
+
+apiRoutes.route('/confidenceResult')
+    .post(AprioriController.create_confidence)
+    .get(AprioriController.find_recomendation)
+//check role
+
+apiRoutes.route('/confidenceResult/all')
+    .get(AprioriController.find_recomendation)
+    //.post(AprioriController.find_recomendation)
 
 apiRoutes.route('/cart/:productId')
     .get(cartController.readCartItem)

@@ -1,0 +1,40 @@
+<html>
+<header>
+    <title>Recomendation</title>
+</header>
+
+<body>
+    <form action="/confidenceResult/all" method="GET">
+        <p>Search: <input type="text" name="id1" /></p>
+        
+        <input type="submit" name="register" />
+    </form>
+   
+    <%if(id1 ){%>
+ <% recomendation.forEach(function (rec) { %>
+    <li>  
+        <h1>Name: <%= rec.id2 %></h1>  
+    </li> 
+               
+<% }); %>
+    <%}%>
+
+</body>
+</html>
+
+<!-- <html>
+<header>
+    <title>Recomendation</title>
+</header>
+
+<body>
+    <form action="/confidenceResult/all" method="POST">
+        <p>Search: <input type="text" name="id1" /></p>
+        
+        <input type="submit" name="register" />
+    </form>
+   
+
+   
+</body>
+</html> -->
